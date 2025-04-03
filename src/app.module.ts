@@ -1,10 +1,13 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { UsersModule } from './users/users.module';
+import { PetsModule } from './pets/pets.module';
+import { PostsModule } from './posts/posts.module';
+import { EventsModule } from './events/events.module';
+import { LostPetsModule } from './lost-pets/lost-pets.module';
+import { AuthModule } from './auth/auth.module';
+
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [UsersModule, PetsModule, PostsModule, EventsModule, LostPetsModule, AuthModule],
 })
-export class AppModule {}
+export class AppModule { }

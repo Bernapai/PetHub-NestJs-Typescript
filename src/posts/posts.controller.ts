@@ -5,9 +5,10 @@ import {
     Delete,
     Param,
     Body,
+    Post
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
-import { Post } from './posts.entity';
+import { post } from './posts.entity';
 import { UpdatePostDto } from './dtos/updatePost.dto';
 import { CreatePostDto } from './dtos/createPost.dto';
 @Controller('posts')
@@ -15,19 +16,19 @@ export class PostsController {
 
     constructor(private readonly postsService: PostsService) { }
     @Get()
-    async findAll(): Promise<Post[]> {
+    async findAll(): Promise<post[]> {
         return this.postsService.findAll();
     }
 
 
     @Get(':id')
-    async findOne(@Param('id') id: number): Promise<Post> {
+    async findOne(@Param('id') id: number): Promise<post> {
         return this.postsService.findOne(id);
     }
 
 
     @Put(':id')
-    async update(@Param('id') id: number, @Body() post: UpdatePostDto): Promise<Post> {
+    async update(@Param('id') id: number, @Body() post: UpdatePostDto): Promise<post> {
         return this.postsService.update(id, post);
     }
 
@@ -38,8 +39,8 @@ export class PostsController {
     }
 
 
-    @Put()
-    async create(@Body() post: CreatePostDto): Promise<Post> {
+    @Post()
+    async create(@Body() post: CreatePostDto): Promise<post> {
         return this.postsService.create(post);
 
     }

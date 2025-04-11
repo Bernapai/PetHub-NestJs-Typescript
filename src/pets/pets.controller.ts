@@ -5,6 +5,7 @@ import {
     Delete,
     Param,
     Body,
+    Post,
 } from '@nestjs/common';
 import { Pet } from './pets.entity';
 import { PetsService } from './pets.service';
@@ -35,7 +36,7 @@ export class PetsController {
         return this.petsService.delete(id);
     }
 
-    @Put()
+    @Post()
     async create(@Body() pet: CreatePetDto): Promise<Pet> {
         return this.petsService.create(pet);
     }

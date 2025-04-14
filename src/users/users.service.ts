@@ -24,6 +24,14 @@ export class UsersServices {
     return user;
   }
 
+  async findByName(name: string): Promise<User> {
+    const user = await this.userRepository.findOne({ where: { nombre: name } });
+    if (!user) {
+      throw new Error(`User with name ${name} not found`);
+    }
+    return user;
+  }
+
   async create(user: User): Promise<User> {
     return this.userRepository.save(user);
   }

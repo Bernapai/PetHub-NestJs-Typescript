@@ -5,14 +5,17 @@ import {
     Delete,
     Param,
     Body,
-    Post
+    Post,
+    UseGuards
 } from '@nestjs/common';
 import { EventsService } from './events.service';
 import { Evento } from './events.entity';
 import { UpdateEventoDto } from './dtos/updateEvents.dto';
 import { CreateEventoDto } from './dtos/createEvents.dto';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('events')
+@UseGuards(JwtAuthGuard) // Apply the JWT guard to all routes in this controller
 export class EventsController {
     constructor(private readonly eventsService: EventsService) { }
 

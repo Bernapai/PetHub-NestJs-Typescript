@@ -6,12 +6,15 @@ import {
     Param,
     Body,
     Post,
+    UseGuards
 } from '@nestjs/common';
 import { Pet } from './pets.entity';
 import { PetsService } from './pets.service';
 import { UpdatePetDto } from './dtos/updatePet.dto';
 import { CreatePetDto } from './dtos/createPet.dto';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 @Controller('pets')
+@UseGuards(JwtAuthGuard) // Apply the JWT guard to all routes in this controller
 export class PetsController {
 
     constructor(private readonly petsService: PetsService) { }

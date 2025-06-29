@@ -4,14 +4,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'postgres', // Tipo de base de datos
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'Juanber123()',
-      database: 'pethub',
-      entities: [__dirname + '/../**/*.entity.ts'],
-      synchronize: true,
+      type: 'postgres',
+      host: process.env.DB_HOST,
+      port: Number(process.env.DB_PORT), // convertimos a número
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
+      entities: [__dirname + '/../**/*.entity.{ts,js}'],
+      synchronize: true, // solo en desarrollo
     }),
   ],
 })

@@ -9,6 +9,7 @@ Bienvenido a **PetHub**, una red social dedicada a conectar a dueños y amantes 
 - 🟧 **TypeScript**: Tipado estático para un código más seguro y mantenible.
 - 🐘 **PostgreSQL**: Base de datos relacional potente y escalable.
 - 🔒 **JWT**: Autenticación segura con JSON Web Tokens.
+- 📋 **Swagger**: Documentacion en Swagger
 
 
 ---

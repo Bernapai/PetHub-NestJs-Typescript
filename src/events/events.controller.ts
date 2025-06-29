@@ -12,7 +12,7 @@ import { EventsService } from './events.service';
 import { Evento } from './events.entity';
 import { UpdateEventoDto } from './dtos/updateEvents.dto';
 import { CreateEventoDto } from './dtos/createEvents.dto';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { AuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import {
     ApiTags,
     ApiBearerAuth,
@@ -25,7 +25,7 @@ import {
 @ApiTags('Events')
 @ApiBearerAuth()
 @Controller('events')
-@UseGuards(JwtAuthGuard)
+@UseGuards(AuthGuard)
 export class EventsController {
     constructor(private readonly eventsService: EventsService) { }
 

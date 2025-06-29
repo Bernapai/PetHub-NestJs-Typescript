@@ -12,7 +12,7 @@ import { Pet } from './pets.entity';
 import { PetsService } from './pets.service';
 import { UpdatePetDto } from './dtos/updatePet.dto';
 import { CreatePetDto } from './dtos/createPet.dto';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { AuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import {
     ApiTags,
     ApiBearerAuth,
@@ -25,7 +25,7 @@ import {
 @ApiTags('Pets')
 @ApiBearerAuth()
 @Controller('pets')
-@UseGuards(JwtAuthGuard)
+@UseGuards(AuthGuard)
 export class PetsController {
     constructor(private readonly petsService: PetsService) { }
 

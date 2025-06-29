@@ -12,7 +12,7 @@ import { UsersServices } from './users.service';
 import { User } from './users.entity';
 import { UpdateUserDto } from './dtos/updateUser.dto';
 import { CreateUserDto } from './dtos/createUser.dto';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { AuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import {
   ApiTags,
   ApiBearerAuth,
@@ -28,7 +28,7 @@ import {
 export class UsersController {
   constructor(private readonly usersService: UsersServices) { }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(AuthGuard)
   @Get()
   @ApiOperation({ summary: 'Obtener todos los usuarios' })
   @ApiResponse({ status: 200, description: 'Lista de usuarios', type: [User] })
@@ -36,7 +36,7 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(AuthGuard)
   @Get(':id')
   @ApiOperation({ summary: 'Obtener un usuario por ID' })
   @ApiParam({ name: 'id', type: Number, description: 'ID del usuario' })
@@ -46,7 +46,7 @@ export class UsersController {
     return this.usersService.findOne(id);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(AuthGuard)
   @Put(':id')
   @ApiOperation({ summary: 'Actualizar un usuario por ID' })
   @ApiParam({ name: 'id', type: Number, description: 'ID del usuario' })
@@ -60,7 +60,7 @@ export class UsersController {
     return this.usersService.update(id, user);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(AuthGuard)
   @Delete(':id')
   @ApiOperation({ summary: 'Eliminar un usuario por ID' })
   @ApiParam({ name: 'id', type: Number, description: 'ID del usuario' })
@@ -69,7 +69,7 @@ export class UsersController {
     return this.usersService.remove(id);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(AuthGuard)
   @Post()
   @ApiOperation({ summary: 'Crear un nuevo usuario' })
   @ApiBody({ type: CreateUserDto })

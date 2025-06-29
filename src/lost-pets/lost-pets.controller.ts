@@ -12,7 +12,7 @@ import { LostPetsService } from './lost-pets.service';
 import { LostPet } from './lost-pets.entity';
 import { UpdateLostPetDto } from './dtos/updateLostPet.dto';
 import { CreateLostPetDto } from './dtos/createLostPet.dto';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { AuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import {
     ApiTags,
     ApiBearerAuth,
@@ -25,7 +25,7 @@ import {
 @ApiTags('LostPets')
 @ApiBearerAuth()
 @Controller('lost-pets')
-@UseGuards(JwtAuthGuard)
+@UseGuards(AuthGuard)
 export class LostPetsController {
     constructor(private readonly lostPetsService: LostPetsService) { }
 

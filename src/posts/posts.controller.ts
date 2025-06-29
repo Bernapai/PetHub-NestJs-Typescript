@@ -12,7 +12,7 @@ import { PostsService } from './posts.service';
 import { Poste } from './posts.entity';
 import { UpdatePostDto } from './dtos/updatePost.dto';
 import { CreatePostDto } from './dtos/createPost.dto';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { AuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import {
     ApiTags,
     ApiBearerAuth,
@@ -25,7 +25,7 @@ import {
 @ApiTags('Posts')
 @ApiBearerAuth()
 @Controller('posts')
-@UseGuards(JwtAuthGuard)
+@UseGuards(AuthGuard)
 export class PostsController {
     constructor(private readonly postsService: PostsService) { }
 

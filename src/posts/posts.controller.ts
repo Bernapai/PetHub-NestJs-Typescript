@@ -9,42 +9,68 @@ import {
     UseGuards
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
-import { post } from './posts.entity';
+import { Poste } from './posts.entity';
 import { UpdatePostDto } from './dtos/updatePost.dto';
 import { CreatePostDto } from './dtos/createPost.dto';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-@Controller('posts')
-@UseGuards(JwtAuthGuard) // Apply the JWT guard to all routes in this controller
-export class PostsController {
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import {
+    ApiTags,
+    ApiBearerAuth,
+    ApiOperation,
+    ApiResponse,
+    ApiParam,
+    ApiBody,
+} from '@nestjs/swagger';
 
+@ApiTags('Posts')
+@ApiBearerAuth()
+@Controller('posts')
+@UseGuards(JwtAuthGuard)
+export class PostsController {
     constructor(private readonly postsService: PostsService) { }
+
     @Get()
-    async findAll(): Promise<post[]> {
+    @ApiOperation({ summary: 'Obtener todos los posts' })
+    @ApiResponse({ status: 200, description: 'Lista de posts', type: [Poste] })
+    async findAll(): Promise<Poste[]> {
         return this.postsService.findAll();
     }
 
-
     @Get(':id')
-    async findOne(@Param('id') id: number): Promise<post> {
+    @ApiOperation({ summary: 'Obtener un post por ID' })
+    @ApiParam({ name: 'id', type: Number, description: 'ID del post' })
+    @ApiResponse({ status: 200, description: 'Post encontrado', type: Poste })
+    @ApiResponse({ status: 404, description: 'Post no encontrado' })
+    async findOne(@Param('id') id: number): Promise<Poste> {
         return this.postsService.findOne(id);
     }
 
-
     @Put(':id')
-    async update(@Param('id') id: number, @Body() post: UpdatePostDto): Promise<post> {
+    @ApiOperation({ summary: 'Actualizar un post por ID' })
+    @ApiParam({ name: 'id', type: Number, description: 'ID del post' })
+    @ApiBody({ type: UpdatePostDto })
+    @ApiResponse({ status: 200, description: 'Post actualizado', type: Poste })
+    @ApiResponse({ status: 404, description: 'Post no encontrado' })
+    async update(
+        @Param('id') id: number,
+        @Body() post: UpdatePostDto,
+    ): Promise<Poste> {
         return this.postsService.update(id, post);
     }
 
-
     @Delete(':id')
+    @ApiOperation({ summary: 'Eliminar un post por ID' })
+    @ApiParam({ name: 'id', type: Number, description: 'ID del post' })
+    @ApiResponse({ status: 204, description: 'Post eliminado' })
     async remove(@Param('id') id: number): Promise<void> {
         return this.postsService.delete(id);
     }
 
-
     @Post()
-    async create(@Body() post: CreatePostDto): Promise<post> {
+    @ApiOperation({ summary: 'Crear un nuevo post' })
+    @ApiBody({ type: CreatePostDto })
+    @ApiResponse({ status: 201, description: 'Post creado', type: Poste })
+    async create(@Body() post: CreatePostDto): Promise<Poste> {
         return this.postsService.create(post);
-
     }
 }

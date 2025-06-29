@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { Pet } from "src/pets/pets.entity";
-import { Post } from "src/posts/posts.entity";
+import { Poste } from "src/posts/posts.entity";
 
 @Entity()
 export class User {
@@ -16,6 +16,6 @@ export class User {
   @OneToMany(() => Pet, pet => pet.dueno)
   pets: Pet[];
 
-  @OneToMany(() => Post, post => post.user)
-  posts: Post[];
+  @OneToMany(() => Poste, post => post.user)
+  posts: Poste[];
 }

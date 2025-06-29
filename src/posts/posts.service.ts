@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
-import { post } from './posts.entity'
+import { Poste } from './posts.entity'
 import { UpdatePostDto } from './dtos/updatePost.dto'
 import { CreatePostDto } from './dtos/createPost.dto'
 
@@ -10,28 +10,28 @@ import { CreatePostDto } from './dtos/createPost.dto'
 export class PostsService {
 
     constructor(
-        @InjectRepository(post)
-        private readonly postRepository: Repository<post>,
+        @InjectRepository(Poste)
+        private readonly postRepository: Repository<Poste>,
     ) { }
 
-    async findAll(): Promise<post[]> {
+    async findAll(): Promise<Poste[]> {
         return this.postRepository.find()
     }
 
-    async findOne(id: number): Promise<post> {
-        const post = await this.postRepository.findOne({ where: { id } })
-        if (!post) {
-            throw new Error(`post with id ${id} not found`)
+    async findOne(id: number): Promise<Poste> {
+        const Poste = await this.postRepository.findOne({ where: { id } })
+        if (!Poste) {
+            throw new Error(`Post with id ${id} not found`)
         }
-        return post
+        return Poste
     }
 
-    async create(post: CreatePostDto): Promise<post> {
-        return this.postRepository.save(post)
+    async create(Poste: CreatePostDto): Promise<Poste> {
+        return this.postRepository.save(Poste)
     }
 
-    async update(id: number, post: UpdatePostDto): Promise<post> {
-        await this.postRepository.update(id, post)
+    async update(id: number, Poste: UpdatePostDto): Promise<Poste> {
+        await this.postRepository.update(id, Poste)
         return this.findOne(id)
     }
 

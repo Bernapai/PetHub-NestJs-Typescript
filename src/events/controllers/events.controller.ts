@@ -8,10 +8,10 @@ import {
     Post,
     UseGuards,
 } from '@nestjs/common';
-import { EventsService } from './events.service';
-import { Evento } from './events.entity';
-import { UpdateEventoDto } from './dtos/updateEvents.dto';
-import { CreateEventoDto } from './dtos/createEvents.dto';
+import { EventsService } from '../services/events.service';
+import { Evento } from '../entities/events.entity';
+import { UpdateEventoDto } from '../dtos/updateEvents.dto';
+import { CreateEventoDto } from '../dtos/createEvents.dto';
 import { AuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import {
     ApiTags,

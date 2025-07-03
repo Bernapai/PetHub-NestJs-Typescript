@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
-import { Pet } from "src/pets/pets.entity";
-import { Poste } from "src/posts/posts.entity";
+import { Pet } from "src/pets/entities/pets.entity";
+import { Poste } from "src/posts/entities/posts.entity";
 
 @Entity()
 export class User {

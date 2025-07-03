@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
-import { User } from "src/users/users.entity";
+import { User } from "src/users/entities/users.entity";
 
 @Entity()
 export class Poste {

@@ -8,10 +8,10 @@ import {
     Post,
     UseGuards
 } from '@nestjs/common';
-import { PostsService } from './posts.service';
-import { Poste } from './posts.entity';
-import { UpdatePostDto } from './dtos/updatePost.dto';
-import { CreatePostDto } from './dtos/createPost.dto';
+import { PostsService } from '../services/posts.service';
+import { Poste } from '../entities/posts.entity';
+import { UpdatePostDto } from '../dtos/updatePost.dto';
+import { CreatePostDto } from '../dtos/createPost.dto';
 import { AuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import {
     ApiTags,

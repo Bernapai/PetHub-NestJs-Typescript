@@ -8,10 +8,10 @@ import {
     Post,
     UseGuards,
 } from '@nestjs/common';
-import { LostPetsService } from './lost-pets.service';
-import { LostPet } from './lost-pets.entity';
-import { UpdateLostPetDto } from './dtos/updateLostPet.dto';
-import { CreateLostPetDto } from './dtos/createLostPet.dto';
+import { LostPetsService } from '../services/lost-pets.service';
+import { LostPet } from '../entities/lost-pets.entity';
+import { UpdateLostPetDto } from '../dtos/updateLostPet.dto';
+import { CreateLostPetDto } from '../dtos/createLostPet.dto';
 import { AuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import {
     ApiTags,

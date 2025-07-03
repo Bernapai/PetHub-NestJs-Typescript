@@ -8,10 +8,10 @@ import {
   Body,
   UseGuards
 } from '@nestjs/common';
-import { UsersServices } from './users.service';
-import { User } from './users.entity';
-import { UpdateUserDto } from './dtos/updateUser.dto';
-import { CreateUserDto } from './dtos/createUser.dto';
+import { UsersServices } from '../services/users.service';
+import { User } from '../entities/users.entity';
+import { UpdateUserDto } from '../dtos/updateUser.dto';
+import { CreateUserDto } from '../dtos/createUser.dto';
 import { AuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import {
   ApiTags,
